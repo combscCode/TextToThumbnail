@@ -1,0 +1,191 @@
+Goal: Create a thumbnail automatically generated based off one line of text with a given set of resources IN PYTHON.
+
+-----
+
+It will take in the following parameter:
+
+(Tournament Name) (Number) - (Player 1) (Color Character) vs. (Player 2) (Color Character) (Tournament Stage)
+
+So your input will ALWAYS look something like this
+
+UMeMe 53 - Mingee (White Falco) vs Heartstrings (Grey Sheik) Winner's Semis
+
+You cannot assume that tournament name will be one word, you cannot assume that the number will be one number. 
+You cannot assume that number will be there.
+You cannot assume that Player 1 or Player 2 will be one word.
+Colors and characters will NOT be case sensitive.
+Tournament stage should NOT be case sensitive.
+You should adjust for the cases where the name is saved both with an apostrophe and without the apostrophe (Winners/Winner's, Losers/Loser's)
+Color before a character is optional. 
+
+-----
+
+You'll create a program that takes in thie title and generates an automated thumbnail like in the video.
+
+Here is what you'll be supplied with for sure:
+
+Font (.OTF, .TTF, .FNT)
+3 Image Files (labeled TOP.png, MID.PNG, BOT.PNG)
+Character Renders (I'm not sure how these are stored, but randomly assuming they're PNG, it's safe to assume they'll be called Fox.png, Sheik.png, ETC)
+
+-----
+
+Possible things you'll be supplied with, whose implementation you'll see below:
+
+VERSUS.PNG
+LOGO.PNG
+MELEE.PNG
+ICON.PNG
+-----
+
+None of the file names are case sensitive.
+
+You CANNOT assume that any varying templates of image files will have identical proportions.
+
+ALL IMAGES AND TEXT MUST BE SCALED APPROPRIATELY.
+
+-----
+
+In the top image, you will put the tags in the given font, centered above the character renders.
+If the player's tag is too long, it MUST Reduce in font size to accommodate the size of the thumbnail and remained centered to it's given location.
+
+
+Scaling the size and position of the tag is up to you, but it MUST be possible to manually adjust the size and position.
+
+
+-----
+
+In the middle image you will generally have a line going across the top, and then you'll have
+
+(Character Render of Player 1's Character) VS. (Character Render of Player 2's Character)
+
+As said above, these will be centered under the player tag, but MUST have a manual option to adjust the size and position. They should touch the top of the PNG and the bottom of the PNG, maybe a bit smaller than that as is aesthetically pleasing to you and is under your jurisdiction.
+
+The characters must be searched by color. If color is absent, use the default color.
+
+You will be deciding how to label the colors of each character model. Do you call it orange fox, or red fox? It's up to you.
+
+IF there is an image called VERSUS.PNG, you will replace the text of VS. with an image in the same location. 
+Vs. and VERSUS.PNG will both be centered.
+
+You may be supplied with a picture that simply has Versus splayed onto the layout without you having to do anything. You will be told this before hand and will something you can adjust before you run your code to account for this.
+
+Underneath VERSUS, you will have the round. 
+
+Rounds that we can have:
+
+Pools, Winners Quarters, Winners Semis, Winners Finals, Losers Quarters, Losers Semis, Losers Final, Grand Finals.
+
+Any other Winners or Losers matches you should retitle as Winners Side or Losers Side, following Xanadu's example.
+(Note that you will NOT be given "Winners Side" in the input text. You will be given "Winners Round 7" or something like that, and this information MUST BE PRESERVED for later on.)
+
+[This will NOT be set in stone and should be made to easily adjust later.]
+
+
+There will probably be a line going across the bottom to complete the bottom image. 
+
+Again, the size and location of everything here will be up to you, but it MUST be possible to manually adjust the size and position of all of them.
+
+-----
+
+The bottom image will have the word "Melee" in the bottom left, and in the bottom right, the number of the tournament, preceded by the character '#' (i.e "#53").
+
+If there is MELEE.PNG, you will instead put that image in the bottom left. If it fits within the border, assume it is scaled to size. If not, rescale it to a size that you see fit. 
+
+You may be supplied with a picture that simply has MELEE splayed onto the layout without you having to do anything. You will be told this before hand acdnd will something you can adjust before you run your code to account for this.
+
+If there is LOGO.PNG, you will put this by default, in the center of the bottom PNG. It should NOT be allowed to overflow onto the top.
+
+If logo_cross_section is titled true, then by default LOGO.PNG should remain directly centered, but also centered in the cross section in between the middle and the bottom images. For reference, take a look at Xanadu. 
+
+LOGO.PNG should NEVER come in contact with the text that titles the round, even if it is in the cross section (i.e WINNERS QUARTERS)
+
+
+Again, the scaling and the positioning will be handled by you. You can assume again that if there is no overflow onto other parts of the image that the image is scaled to size. If not, scale it as you see fit. 
+
+You may be supplied with a picture that simply has LOGO splayed onto the layout without you having to do anything. You will be told this before hand and will something you can adjust before you run your code to account for this. 
+
+You MAY run into a scenario where the LOGO given is a cross section logo and extends further than the rest of bottom.png. In this case, you will have the cross section logo overlap onto middle.PNG. You will be told if this is the case, and you should have code that can account for this.
+
+-----
+
+After you are done, the initial URL should have remained intact. You will have adjusted the URL that once looked like this
+
+UMeMe 53 - Mingee (White Falco) vs Heartstrings (Grey Sheik) Winner's Semis
+
+To this
+
+UMeMe 53 - Mingee (Falco) vs Heartstrings (Sheik) Winners Semis
+
+[The colors and the potential apostrophe are removed]
+
+You will save the created thumbnail as "UMeMe 53 - Mingee (Falco) vs Heartstrings (Sheik) Winners Semis".PNG
+
+Your program should return "UMeMe 53 - Mingee (Falco) vs Heartstrings (Sheik) Winners Semis" as a string.
+
+-----
+
+ALL OF YOUR CODE MUST BE COMMENTED AND MODULARIZED. Meaning that if we wish to build off of it, it should have easy to read and easy to understand functions. Most of the work for the individual images (top, mid, bot) should thus be done in separate WELL PLANNED functions.
+
+-----
+
+Implementation Suggestions/Rules:
+
+In order to customize scaling and size adjustment, I recommend using a slew of variables at the top and assigning their values to zero, with their default values commented
+
+Example:
+
+top_font_size = 0 //Default Value: 32
+player1_tag = {0, 0} //Default location: 500,0 (This is a made up value, I have no fucking clue)
+player2_tag = {0, 0} //Default location: 300,0
+versus_img_size = 0 //Default Value: 50
+versus_txt_size = 0 //Default Value: 50
+logo_placement = 0 //Default Value: 20 I recommend having a standard position for the logo, and then if logo_cross_section is true then the new logo_placement value adjusts it from the centered location.
+logo_cross_section = false //Default Value: False 
+etc...
+
+This is just a suggestion. You do NOT need to implement the variables this way, though I strongly suggest following this format. 
+
+Your code can thus assume that all sizes and locations can be scaled according to how you see fit (or a default value) if the global variables have not been touched. [Yes, we ARE using global variables. Naming variables in this project will be very important.] If they are editted, it is safe to assume that whoever is modifying the code knows what they are doing, and can override your multipliers and locations.
+
+Capitalize all text that you put on the thumbnail
+
+For starters, treat the top, middle, and bottom images completely separately. It will be much easier to split up work that way. Worry about combining them later, but absolutely do not sacrifice the integrity and legibility of your code
+
+Spend a lot of time looking over the structure of how to implement things before implementing them. 
+
+Work on the core essentials of the process before getting into any specifics like location and tweaking.
+
+Use functions wherever you will use the same code twice, or whenever you're splitting your work onto a separate task. This is part of the prior comment that you should be thinking before you even touch a keyboard of how to implement this using what functions.
+
+Comment your code. You will be working with somebody other than yourself, and this is a project you are not going to finish in one day, and that other people will eventually professionally use. They MUST be able to understand your code. 
+
+The previous two points are absolutely essential. If I see that you are not commenting your code or that your code structure is not flexible to development (i.e everything is in one cluster fucked main function, you're repeating dozens of lines of codes multiple times instead of using functions) you are useless to me as a coder, and I will be too ashamed to release your code to the public. 
+
+
+
+Create documentation on anything that might need help understanding near the top using
+/*
+*/
+
+If you are calling it "Orange Fox" instead of "Red Fox", people have to know. Is it Black Sheik, or Grey Sheik? This must be documented somewhere.
+
+To begin with, all images except character renders will be scaled to size. Work on size scaling last, but you must ensure that as you work you leave room to implement the size adjustment later on. In addition, you can prescale the character renders as you see fit (using our given character renders), but as I said before, you MUST leave flexibility for later on. 
+
+Honestly, we will probably not need to do anything with scaling the images (aside from character renders). 
+
+The VERSUS.PNG, MELEE.PNG, LOGO.PNG, should all be scaled to size already, so worry more about scaling to location. Hint: The artist will probably have a locational preference.
+
+All details regarding whether or not VERSUS, LOGO, and MELEE are already on the overlay should be planned for, but worked out later. I recommend using boolean variables at the top
+
+logo_is_provided = false //Logo is not provided on the overlay already
+logo_is_provided_cross_section = false //Logo in the cross section is not provided 
+versus_is_provided = false //Versus Logo is not provided on top of the overlay
+
+This isn't to say that these image files aren't provided. This is to say that they aren't already splashed onto the overlay without your knowledge. You will be checking the folder for all of the PNG files that could be given, you will not be told whether or not they are given to you. You can assume these are in your current directory along with your python file. 
+
+Xanadu covers most of the specifications that I asked for, so look to them for more reference. 
+
+
+----
+

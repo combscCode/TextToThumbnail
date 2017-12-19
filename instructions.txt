@@ -1,0 +1,65 @@
+Instructions for running TextToThumbnail.py:
+
+To create a thumbnail, please create a folder with the following files included:
+	-input.txt
+	-VERSUS.png
+	-MELEE.png
+	-LOGO.png
+	Include the thumbnail separated by vertical sections
+	-TOP.png
+	-MID.png
+	-BOT.png
+	Also include PNGs for EVERY character with EVERY possible color in the following format
+	-(character) (color).png  with a space in between the character and color 
+
+
+
+'input.txt' must contain the following information in the given format:
+(Tournament Name) (Number) - (Player 1) (Color Character) vs. (Player 2) (Color Character) (Tournament Stage)
+
+EXAMPLE:
+UMeMe 53 - Princess Duo (White Peach) vs Shaeden (Neutral Captain Falcon) Winner's Semis
+
+Requirements for title:
+	-Must have every word and character separated by a space, except for inside of parentheses
+	-ESPECIALLY important before and the dash '-' and outside of parentheses but NOT inside 
+	-Every word must be Capitalized
+	-Colors for each character are optional
+	-Round is optional
+	-Acceptable rounds: Pools, Winners Quarters, Winners Semis, Winners Finals, Losers Quarters, Losers Semis, Losers Final, Grand Finals. 
+	-Apostrophe for Winner’s Semi/Final is optional
+	-Player tag CANNOT begin with '('
+	-Character color MUST match to an appriopriate color below
+
+
+List of Character Colors:
+Bower: Neutral, Red, Blue, Black
+Captain Falcon: Neutral, Red, Pink, Green, Blue
+Donkey Kong: Neutral, Black, Red, Blue, Green
+Dr. Mario: Neutral, Red, Blue, Green, Black
+Falco: Neutral, Red, Blue, Green
+Fox: Neutral, Red, Blue, Green
+Ganondorf: Neutral, Red, Blue, Green, Purple
+Ice Climbers: Neutral, Green, Orange, Red
+Jigglypuff: Neutral, Red, Blue, Green, Yellow
+Kirby: Neutral, Yellow, Blue, Red, Green, White
+Link: Neutral, Red, Blue, Black, White
+Luigi: Neutral, White, Blue, Pink
+Mario: Neutral, Yellow, Black, Blue, Green
+Marth: Blue, Red, Green, Black, White
+Mewtwo: Neutral, Red, Blue, Green
+Mr. Game & Watch: Neutral, Red, Blue, Green
+Ness: Neutral, Yellow, Blue, Green
+Peach: Neutral, Yellow, White, Blue, Green
+Pichu: Neutral, Red, Blue, Green
+Pikachu: Neutral, Red, Blue, Green
+Roy: Neutral, Red, Blue, Green, Yellow
+Samus: Neutral, Pink, Black, Green, Purple
+Sheik: Neutral, Red, Blue, Green, White
+Yoshi: Neutral, Red, Blue, Yellow, Pink, Cyan
+Young Link: Neutral, Red, Blue, White, Black
+Zelda: Neutral, Red, Blue, Green, White
+
+Requirements for PNG files:
+	-ALL character models should be facing to the right such that they are cropped on the left side
+	-The ratio for width:height should be 1.2:1 
